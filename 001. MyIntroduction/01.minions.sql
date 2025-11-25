@@ -49,6 +49,9 @@ INSERT INTO towns (id, name) VALUES (1, 'Burgas');
 INSERT INTO towns (id, name) VALUES (2, 'Sofia');
 INSERT INTO towns (id, name) VALUES (3, 'Varna');
 
+/* Избиране на конкретни полета */
+SELECT name, age  FROM minions LIMIT 3;
+
  /* Създаване на външен ключ между minions.townid и towns.id */
  ALTER TABLE minions                     -- Променяме структурата на таблицата minions
  
@@ -61,7 +64,15 @@ INSERT INTO towns (id, name) VALUES (3, 'Varna');
   ON DELETE NO ACTION                   -- Забранява изтриване на град, ако има миньони, които го използват
   ON UPDATE NO ACTION;                  -- Забранява промяна на towns.id, ако има миньони, които сочат към него
 
+/*Изтрийте всички данни от таблица Minions*/
+DELETE FROM minions;
 
+/*Премахнете всички таблици*/
+SET FOREIGN_KEY_CHECKS = 0;   -- Изключваме проверките за външни ключове
+DROP TABLE IF EXISTS minions; -- Изтриваме таблица minions
+DROP TABLE IF EXISTS towns;   -- Изтриваме таблица towns
+SET FOREIGN_KEY_CHECKS = 1;   -- Включваме проверките обратно
+/*Премахнете всички таблици*/
 
 
 

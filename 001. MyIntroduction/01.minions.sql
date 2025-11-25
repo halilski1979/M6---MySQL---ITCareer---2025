@@ -67,6 +67,13 @@ SELECT name, age  FROM minions LIMIT 3;
 /*Изтрийте всички данни от таблица Minions*/
 DELETE FROM minions;
 
+/*Ако таблицата има външни ключове и трябва да се изтрие*/
+SET FOREIGN_KEY_CHECKS = 0;
+DROP TABLE IF EXISTS users;
+SET FOREIGN_KEY_CHECKS = 1;
+/*Ако таблицата има външни ключове*/
+
+
 /*Премахнете всички таблици*/
 SET FOREIGN_KEY_CHECKS = 0;   -- Изключваме проверките за външни ключове
 DROP TABLE IF EXISTS minions; -- Изтриваме таблица minions

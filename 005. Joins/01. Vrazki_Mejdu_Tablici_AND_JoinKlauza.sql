@@ -130,22 +130,13 @@ LIMIT 1;                         -- Ограничаваме резултата 
 */
 
 /* v1 – LEFT JOIN подход */
+USE geography;
 SELECT DISTINCT 
-    `country_name`                     -- Име на държавата
-FROM `countries` AS `c`                -- Таблица с всички държави
-LEFT JOIN `mountains_countries` AS `mc`
-    ON `mc`.`country_code` = `c`.`country_code`
-                                        -- Свързваме държавите с таблицата,
-                                        -- която описва кои държави имат планини
-WHERE 
-    `mc`.`mountain_id` NOT IN
-    (
-        SELECT `id`
-        FROM `mountains`
-        WHERE `mountains`.`id` = `mc`.`mountain_id`
-                                        -- Подзаявка, която проверява
-                                        -- дали има реална планина
-    );
+ country_name
+ FROM countries AS c
+ LEFT JOIN mountains_countries AS mc
+ ON c.country_code=mc.country_code
+WHERE mc.mountain_id IS NULL;	
     
 /* =============================== */
 /* v2 – Препоръчителен и по-ясен   */
